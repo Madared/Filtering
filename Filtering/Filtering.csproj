@@ -10,4 +10,19 @@
       <PackageReference Include="Afonsomtsm.Result" Version="0.9.6.2" />
     </ItemGroup>
 
+    <PropertyGroup>
+        <PackageId>Afonsomtsm.Filtering</PackageId>
+        <Version>0.1.0.0</Version>
+        <Authors>Afonso Matos</Authors>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <Description>A package to provide the structure for reusable filtering</Description>
+        <Copyright>Copyright(c) Afonso Matos 2024</Copyright>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageTags>Filtering;Reusability;OOP;</PackageTags>
+        <RepositoryUrl>https://github.com/Madared/Filtering</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/Madared/Filtering</PackageProjectUrl>
+    </PropertyGroup>
+
 </Project>
+
