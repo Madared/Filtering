@@ -4,10 +4,16 @@ using ResultAndOption.Options;
 
 namespace Filtering.QueryFiltering;
 
-public class CompoundUniqueQueryFilter<T>(params IIdentifiableUniqueQueryFilter<T>[] filters)
+/// <summary>
+/// A Compound unique query filter
+/// </summary>
+/// <param name="filters"></param>
+/// <typeparam name="T"></typeparam>
+public sealed class CompoundUniqueQueryFilter<T>(params IIdentifiableUniqueQueryFilter<T>[] filters)
     : IIdentifiableUniqueQueryFilter<T>
     where T : notnull
 {
+    /// <inheritdoc />
     public Option<T> Filter(IQueryable<T> query)
     {
         Option<T> firstFilter = filters.Length == 0
@@ -18,8 +24,10 @@ public class CompoundUniqueQueryFilter<T>(params IIdentifiableUniqueQueryFilter<
         return isCorrect ? firstFilter : Option<T>.None();
     }
 
+    /// <inheritdoc />
     public bool IsCorrectValue(T data) => filters.All(filter => filter.IsCorrectValue(data));
 
+    /// <inheritdoc />
     public IdentifyingInformation Information() => filters
         .Select(filter => filter.Information())
         .Pipe(infos => new CompoundIdentifyingInformation(infos));

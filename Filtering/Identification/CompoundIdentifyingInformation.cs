@@ -1,19 +1,33 @@
 namespace Filtering.Identification;
 
+/// <summary>
+/// An aggregation of <see cref="IdentifyingInformation"/> objects into one
+/// </summary>
 public sealed record CompoundIdentifyingInformation : IdentifyingInformation
 {
-    private readonly IEnumerable<IdentifyingInformation> _filterInformations;
+    private readonly IEnumerable<IdentifyingInformation> _informations;
 
-    public CompoundIdentifyingInformation(params IdentifyingInformation[] filterInformations)
+    /// <summary>
+    /// Params constructor
+    /// </summary>
+    /// <param name="informations"></param>
+    public CompoundIdentifyingInformation(params IdentifyingInformation[] informations)
     {
-        _filterInformations = filterInformations;
+        _informations = informations;
     }
 
-    public CompoundIdentifyingInformation(IEnumerable<IdentifyingInformation> filterInformations)
+    /// <summary>
+    /// IEnumerable constructor
+    /// </summary>
+    /// <param name="informations"></param>
+    public CompoundIdentifyingInformation(IEnumerable<IdentifyingInformation> informations)
     {
-        _filterInformations = filterInformations;
+        _informations = informations;
     }
 
-    public StringRepresentableCollection<IdentifyingInformation> FilterInformations =>
-        new StringRepresentableCollection<IdentifyingInformation>(_filterInformations);
+    /// <summary>
+    /// Returns a string representable collection of all information objects contained
+    /// </summary>
+    public StringRepresentableCollection<IdentifyingInformation> InformationCollection =>
+        new StringRepresentableCollection<IdentifyingInformation>(_informations);
 };
