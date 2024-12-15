@@ -19,13 +19,12 @@ public sealed class CompoundUniqueEnumerableFilter<T>(params IIdentifiableUnique
         Option<T> firstFilter = filters.Length == 0
             ? Option<T>.None()
             : filters[0].Filter(query);
-        bool isCorrect = firstFilter.IsSome() &&
-                         filters.Select(filter => filter.IsCorrectValue(firstFilter.Data)).All(correct => correct);
+        bool isCorrect = firstFilter.IsSome() && Equals(firstFilter.Data);
         return isCorrect ? firstFilter : Option<T>.None();
     }
 
     /// <inheritdoc />
-    public bool IsCorrectValue(T data) => filters.All(filter => filter.IsCorrectValue(data));
+    public bool Equals(T data) => filters.All(filter => filter.Equals(data));
 
     /// <inheritdoc />
     public IdentifyingInformation Information() => filters
