@@ -16,7 +16,7 @@ public static class EnumerableFilterExtensions
     /// <returns></returns>
     public static IEnumerable<T> Filter<T>(this IEnumerable<T> enumerable, IEnumerableFilter<T> filter)
         where T : notnull =>
-        filter.Filter(enumerable);
+        filter.FilterEnumerable(enumerable);
 
     /// <summary>
     /// Will use the provided filter to filter the <see cref="IEnumerable{T}"/>
@@ -27,5 +27,5 @@ public static class EnumerableFilterExtensions
     /// <returns></returns>
     public static Option<T> Filter<T>(this IEnumerable<T> enumerable, IUniqueEnumerableFilter<T> filter)
         where T : notnull =>
-        filter.Filter(enumerable);
+        filter.FilterEnumerable(enumerable);
 }

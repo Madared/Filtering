@@ -14,11 +14,11 @@ public sealed class CompoundUniqueEnumerableFilter<T>(params IIdentifiableUnique
     where T : notnull
 {
     /// <inheritdoc />
-    public Option<T> Filter(IEnumerable<T> query)
+    public Option<T> FilterEnumerable(IEnumerable<T> query)
     {
         Option<T> firstFilter = filters.Length == 0
             ? Option<T>.None()
-            : filters[0].Filter(query);
+            : filters[0].FilterEnumerable(query);
         bool isCorrect = firstFilter.IsSome() && Equals(firstFilter.Data);
         return isCorrect ? firstFilter : Option<T>.None();
     }

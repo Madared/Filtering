@@ -11,8 +11,8 @@ public sealed class CompoundEnumerableFilter<T>(params IIdentifiableEnumerableFi
     where T : notnull
 {
     /// <inheritdoc />
-    public IEnumerable<T> Filter(IEnumerable<T> query) =>
-        filters.Aggregate(query, (filtered, next) => next.Filter(filtered));
+    public IEnumerable<T> FilterEnumerable(IEnumerable<T> query) =>
+        filters.Aggregate(query, (filtered, next) => next.FilterEnumerable(filtered));
 
     /// <inheritdoc />
     public IdentifyingInformation Information() =>

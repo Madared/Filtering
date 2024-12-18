@@ -11,5 +11,5 @@ public interface IEnumerableFilter<T> where T : notnull
     /// </summary>
     /// <param name="enumerable"></param>
     /// <returns></returns>
-    public IEnumerable<T> Filter(IEnumerable<T> enumerable);
+    public IEnumerable<T> FilterEnumerable(IEnumerable<T> enumerable);
 }

@@ -15,7 +15,7 @@ public static class QueryFilterExtensions
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
     public static IQueryable<T> Filter<T>(this IQueryable<T> query, IQueryFilter<T> filter) where T : notnull =>
-        filter.Filter(query);
+        filter.FilterQuery(query);
 
     /// <summary>
     /// Will use the provided query filter to filter the <see cref="IQueryable"/>
@@ -25,5 +25,5 @@ public static class QueryFilterExtensions
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
     public static Option<T> Filter<T>(this IQueryable<T> query, IUniqueQueryFilter<T> filter) where T : notnull =>
-        filter.Filter(query);
+        filter.FilterQuery(query);
 }

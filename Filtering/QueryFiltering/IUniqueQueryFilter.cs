@@ -14,5 +14,5 @@ public interface IUniqueQueryFilter<T> : IEquatable<T> where T : notnull
     /// </summary>
     /// <param name="query"></param>
     /// <returns></returns>
-    public Option<T> Filter(IQueryable<T> query);
+    public Option<T> FilterQuery(IQueryable<T> query);
 }

@@ -12,10 +12,10 @@ public sealed class EmptyFilter<T> : IIdentifiableQueryFilter<T>, IIdentifiableE
     private readonly EmptyFilterIdentifyingInformation _information = new();
 
     /// <inheritdoc />
-    public IQueryable<T> Filter(IQueryable<T> query) => query;
+    public IQueryable<T> FilterQuery(IQueryable<T> query) => query;
     
     /// <inheritdoc />
-    public IEnumerable<T> Filter(IEnumerable<T> enumerable) => enumerable;
+    public IEnumerable<T> FilterEnumerable(IEnumerable<T> enumerable) => enumerable;
     
     /// <inheritdoc />
         public IdentifyingInformation Information() => _information;

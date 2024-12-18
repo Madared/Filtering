@@ -11,8 +11,8 @@ public sealed class CompoundQueryFilter<T>(params IIdentifiableQueryFilter<T>[] 
     where T : notnull
 {
     /// <inheritdoc />
-    public IQueryable<T> Filter(IQueryable<T> query) =>
-        filters.Aggregate(query, (filtered, next) => next.Filter(filtered));
+    public IQueryable<T> FilterQuery(IQueryable<T> query) =>
+        filters.Aggregate(query, (filtered, next) => next.FilterQuery(filtered));
 
     /// <inheritdoc />
     public IdentifyingInformation Information() =>

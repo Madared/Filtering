@@ -33,11 +33,11 @@ public sealed class CompoundUniqueQueryFilter<T> : IIdentifiableUniqueQueryFilte
     }
 
     /// <inheritdoc />
-    public Option<T> Filter(IQueryable<T> query)
+    public Option<T> FilterQuery(IQueryable<T> query)
     {
         Option<T> firstFilter = _filters.Length == 0
             ? Option<T>.None()
-            : _filters[0].Filter(query);
+            : _filters[0].FilterQuery(query);
         bool isCorrect = firstFilter.IsSome() && Equals(firstFilter.Data);
         return isCorrect ? firstFilter : Option<T>.None();
     }

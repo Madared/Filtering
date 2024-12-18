@@ -13,5 +13,5 @@ public interface IQueryFilter<T> where T : notnull
     /// </summary>
     /// <param name="query"></param>
     /// <returns></returns>
-    public IQueryable<T> Filter(IQueryable<T> query);
+    public IQueryable<T> FilterQuery(IQueryable<T> query);
 }
