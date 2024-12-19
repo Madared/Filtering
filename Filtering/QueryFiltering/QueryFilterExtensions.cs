@@ -26,4 +26,22 @@ public static class QueryFilterExtensions
     /// <returns></returns>
     public static Option<T> Filter<T>(this IQueryable<T> query, IUniqueQueryFilter<T> filter) where T : notnull =>
         filter.FilterQuery(query);
+
+    public static Task<Option<T>> Filter<T>(this IQueryable<T> query, IAsyncUniqueQueryFilter<T> filter)
+        where T : notnull =>
+        filter.Filter(query);
+
+    public static async Task<Option<T>> Filter<T>(this Task<IQueryable<T>> asyncQuery, IUniqueQueryFilter<T> filter) where T : notnull
+    {
+        IQueryable<T> query = await asyncQuery;
+        return filter.FilterQuery(query);
+    }
+
+    public static async Task<Option<T>> Filter<T>(
+        this Task<IQueryable<T>> asyncQuery,
+        IAsyncUniqueQueryFilter<T> filter) where T : notnull
+    {
+        IQueryable<T> query = await asyncQuery;
+        return await filter.Filter(query);
+    }
 }
