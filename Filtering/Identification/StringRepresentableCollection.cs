@@ -7,5 +7,6 @@ namespace Filtering.Identification;
 /// <typeparam name="T"></typeparam>
 public sealed class StringRepresentableCollection<T>(IEnumerable<T> collection) where T : notnull
 {
+    /// <inheritdoc />
     public override string ToString() => $"[{string.Join(", ", collection.Select(item => item.ToString()))}]";
 }
