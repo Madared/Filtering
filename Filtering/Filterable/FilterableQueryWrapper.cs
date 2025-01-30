@@ -8,34 +8,35 @@ internal sealed class FilterableQueryWrapper<T>(IQueryable<T> queryable) : IFilt
 {
     private IQueryable<T> _queryable = queryable;
 
+    public int Count() => _queryable.Count();
     public IFilterable<T> Where(Expression<Func<T, bool>> predicate)
     {
-        _queryable = _queryable.Where(predicate);
-        return this;
+        IQueryable<T> filtered = _queryable.Where(predicate);
+        return new FilterableQueryWrapper<T>(filtered);
     }
 
     public IFilterable<T> OrderBy<TSelected>(Expression<Func<T, TSelected>> selector)
     {
-        _queryable = _queryable.OrderBy(selector);
-        return this;
+        IQueryable<T> ordered = _queryable.OrderBy(selector);
+        return new FilterableQueryWrapper<T>(ordered);
     }
 
     public IFilterable<T> OrderByDescending<TSelected>(Expression<Func<T, TSelected>> selector)
     {
-        _queryable = _queryable.OrderByDescending(selector);
-        return this;
+        IOrderedQueryable<T> ordered = _queryable.OrderByDescending(selector);
+        return new FilterableQueryWrapper<T>(ordered);
     }
 
     public IFilterable<T> Take(int toTake)
     {
-        _queryable = _queryable.Take(toTake);
-        return this;
+        IQueryable<T> taken = _queryable.Take(toTake);
+        return new FilterableQueryWrapper<T>(taken);
     }
 
     public IFilterable<T> Skip(int toSkip)
     {
-        _queryable = _queryable.Skip(toSkip);
-        return this;
+        IQueryable<T> skipped = _queryable.Skip(toSkip);
+        return new FilterableQueryWrapper<T>(skipped);
     }
     public Option<T> Single(Expression<Func<T, bool>> predicate) => _queryable
         .SingleOrDefault(predicate)

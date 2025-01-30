@@ -5,6 +5,7 @@ namespace Filtering.Filterable;
 
 public interface IFilterable<T> where T : notnull
 {
+    public int Count();
     public IFilterable<T> Where(Expression<Func<T, bool>> predicate);
     public IFilterable<T> OrderBy<TSelected>(Expression<Func<T, TSelected>> selector);
     public IFilterable<T> OrderByDescending<TSelected>(Expression<Func<T, TSelected>> selector);
