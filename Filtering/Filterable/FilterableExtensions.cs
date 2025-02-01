@@ -1,5 +1,6 @@
 using Filtering.Filterable.Async;
 using ResultAndOption.Options;
+using ResultAndOption.Results;
 
 namespace Filtering.Filterable;
 
@@ -17,6 +18,6 @@ public static class FilterableExtensions
     public static IFilterableExecutable<T> AsFilterable<T>(this IQueryable<T> queryable) where T : notnull =>
         new FilterableQueryWrapper<T>(queryable);
     
-    public static Task<Option<T>> Filter<T>(this IAsyncFilterableExecutable<T> filterable, IAsyncUniqueFilter<T> filter)
+    public static Task<Result<T>> Filter<T>(this IAsyncFilterableExecutable<T> filterable, IAsyncUniqueFilter<T> filter)
         where T : notnull => filter.Filter(filterable);
 }
