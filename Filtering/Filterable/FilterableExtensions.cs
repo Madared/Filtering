@@ -5,21 +5,18 @@ namespace Filtering.Filterable;
 
 public static class FilterableExtensions
 {
-    public static IFilterable<T> Filter<T>(this IFilterable<T> filterable, IFilter<T> filter) where T : notnull =>
+    public static IFilterable<T, TFilterable> Filter<T, TFilterable>(this IFilterable<T, TFilterable> filterable, IFilter<T> filter) where T : notnull where TFilterable : IFilterable<T, TFilterable> =>
         filter.Filter(filterable);
 
-    public static Option<T> Filter<T>(this IFilterable<T> filterable, IUniqueFilter<T> filter) where T : notnull =>
+    public static Option<T> Filter<T>(this IFilterableExecutable<T> filterable, IUniqueFilter<T> filter) where T : notnull =>
         filter.Filter(filterable);
 
-    public static IFilterable<T> AsFilterable<T>(this IEnumerable<T> enumerable) where T : notnull =>
+    public static IFilterableExecutable<T> AsFilterable<T, TFilterable>(this IEnumerable<T> enumerable) where T : notnull =>
         new FilterableEnumerableWrapper<T>(enumerable);
 
-    public static IFilterable<T> AsFilterable<T>(this IQueryable<T> queryable) where T : notnull =>
+    public static IFilterableExecutable<T> AsFilterable<T>(this IQueryable<T> queryable) where T : notnull =>
         new FilterableQueryWrapper<T>(queryable);
-
-    public static Task<IAsyncFilterable<T>> Filter<T>(this IAsyncFilterable<T> filterable, IAsyncFilter<T> filter)
-        where T : notnull => filter.Filter(filterable);
-
-    public static Task<Option<T>> Filter<T>(this IAsyncFilterable<T> filterable, IAsyncUniqueFilter<T> filter)
+    
+    public static Task<Option<T>> Filter<T>(this IAsyncFilterableExecutable<T> filterable, IAsyncUniqueFilter<T> filter)
         where T : notnull => filter.Filter(filterable);
 }
