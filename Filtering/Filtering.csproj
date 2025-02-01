@@ -16,7 +16,7 @@
 
     <PropertyGroup>
         <PackageId>Afonsomtsm.Filtering</PackageId>
-        <Version>0.4.2</Version>
+        <Version>0.4.3</Version>
         <Authors>Afonso Matos</Authors>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <Description>A package to provide the structure for reusable filtering</Description>
