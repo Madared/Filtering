@@ -15,6 +15,13 @@ public interface IAsyncUniqueQueryFilter<T> where T : notnull
     /// <param name="query"></param>
     /// <returns></returns>
     public Task<Option<T>> Filter(IQueryable<T> query);
+
+    /// <summary>
+    /// Checks if value conforms to the unique query filter.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public bool IsCorrect(T value);
 }
 
 /// <summary>

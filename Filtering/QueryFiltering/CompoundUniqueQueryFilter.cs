@@ -38,12 +38,12 @@ public sealed class CompoundUniqueQueryFilter<T> : IIdentifiableUniqueQueryFilte
         Option<T> firstFilter = _filters.Length == 0
             ? Option<T>.None()
             : _filters[0].FilterQuery(query);
-        bool isCorrect = firstFilter.IsSome() && Equals(firstFilter.Data);
+        bool isCorrect = firstFilter.IsSome() && IsCorrect(firstFilter.Data);
         return isCorrect ? firstFilter : Option<T>.None();
     }
 
     /// <inheritdoc />
-    public bool Equals(T? data) => _filters.All(filter => filter.Equals(data));
+    public bool IsCorrect(T data) => _filters.All(filter => filter.IsCorrect(data));
 
     /// <inheritdoc />
     public IdentifyingInformation Information() => _filters

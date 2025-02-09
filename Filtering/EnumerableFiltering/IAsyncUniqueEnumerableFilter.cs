@@ -15,6 +15,13 @@ public interface IAsyncUniqueEnumerableFilter<T> where T : notnull
     /// <param name="enumerable"></param>
     /// <returns></returns>
     Task<Option<T>> Filter(IEnumerable<T> enumerable);
+
+    /// <summary>
+    /// Checks if value conforms to the unique filter.
+    /// </summary>
+    /// <param name="value">The value to check</param>
+    /// <returns></returns>
+    public bool IsCorrect(T value);
 }
 
 /// <summary>
